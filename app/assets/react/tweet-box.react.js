@@ -23,6 +23,14 @@ var TweetBox = React.createClass({
       var value = this.refs[ref].getDOMNode().value;
       if(value) data[ref] = value;
     }.bind(this))
-    //TODO: as the model to tweet.
+    data.hashtags = data.hashtags.split(", ")
+    $.ajax({
+      url: '/tweets',
+      type: 'POST',
+      data: {tweet: data}
+    })
+    .done(function(data) {
+      TwitterApp.tweetCollection.unshift(data)
+    })
   }
 })
