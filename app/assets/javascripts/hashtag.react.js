@@ -1,4 +1,5 @@
 /** @jsx React.DOM */
+//= require collections/tweet-search
 var Hashtag = React.createClass({displayName: 'Hashtag',
   render: function() {
     return (
@@ -9,6 +10,9 @@ var Hashtag = React.createClass({displayName: 'Hashtag',
   },
   handleClick: function(e) {
     e.preventDefault();
-    //TODO: ask model to search.
+    search = new TwitterApp.Collections.TweetSearch({query: e.target.hash.replace("#", "")});
+    // search.fetch({success: function(data) {
+    //   TwitterApp.tweetCollection.reset(data);
+    // }});
   }
 })

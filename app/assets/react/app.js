@@ -1,5 +1,11 @@
 /** @jsx React.DOM */
 //= require twitter.react
-$(document).ready(function() {
+TwitterApp.initialize = function() {
+  this.tweetCollection = new TwitterApp.Collections.Tweets;
+  this.hashtagCollection = new TwitterApp.Collections.Hashtags;
   React.renderComponent(<Twitter />, document.body);
+}
+
+$(document).ready(function() {
+  TwitterApp.initialize();
 })

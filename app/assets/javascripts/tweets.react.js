@@ -2,20 +2,19 @@
 //= require tweet.react
 //= require collections/tweets
 var Tweets = React.createClass({displayName: 'Tweets',
-  collection: new TwitterApp.Collections.Tweets,
-
   getInitialState: function() {
     return {
-      recent: this.collection.models
+      recent: TwitterApp.tweetCollection.models
     }
   },
   componentDidMount: function() {
-    this.collection.on('sync', function() {
+
+    TwitterApp.tweetCollection.on('sync', function() {
       this.setState({
-        recent: this.collection.models
+        recent: TwitterApp.tweetCollection.models
       })
     }.bind(this))
-    this.collection.fetch();
+    TwitterApp.tweetCollection.fetch();
   },
   render: function() {
     var tweets = [];
@@ -23,9 +22,9 @@ var Tweets = React.createClass({displayName: 'Tweets',
       tweets.push(Tweet( {key:i, tweet:tweet}))
     })
     return (
-      React.DOM.section( {id:"tweets-container"},
+      React.DOM.section( {id:"tweets-container"}, 
         React.DOM.h3(null, "Tweets"),
-        React.DOM.ul(null,
+        React.DOM.ul(null, 
           tweets
         )
       )

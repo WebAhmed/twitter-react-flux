@@ -2,20 +2,19 @@
 //= require hashtag.react
 //= require collections/hashtags
 var Trends = React.createClass({
-  collection: new TwitterApp.Collections.Hashtags,
 
   getInitialState: function() {
     return {
-      hashtags: this.collection.models
+      hashtags: TwitterApp.hashtagCollection.models
     }
   },
   componentDidMount: function() {
-    this.collection.on('sync', function() {
+    TwitterApp.hashtagCollection.on('sync', function() {
       this.setState({
-        hashtags: this.collection.models
+        hashtags: TwitterApp.hashtagCollection.models
       })
     }.bind(this))
-    this.collection.fetch();
+    TwitterApp.hashtagCollection.fetch();
   },
 
   render: function() {
