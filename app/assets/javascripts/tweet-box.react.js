@@ -1,5 +1,4 @@
 /** @jsx React.DOM */
-//= require actions/tweet-actions
 var TweetBox = React.createClass({displayName: 'TweetBox',
   render: function() {
     return (
@@ -24,6 +23,6 @@ var TweetBox = React.createClass({displayName: 'TweetBox',
       var value = this.refs[ref].getDOMNode().value;
       if(value) data[ref] = value;
     }.bind(this))
-    TweetActions.tweet(data)
+    //TODO: as the model to tweet.
   }
 })

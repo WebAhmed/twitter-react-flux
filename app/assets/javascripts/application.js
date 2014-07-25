@@ -11,5 +11,11 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery_ujs
+//= require_self
+//= require ../../../vendor/assets/javascripts/underscore
+//= require ../../../vendor/assets/javascripts/backbone
 //= require app
+var TwitterApp = {
+  Models: {},
+  Collections: {}
+}

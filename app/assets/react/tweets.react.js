@@ -1,24 +1,26 @@
 /** @jsx React.DOM */
-//= require stores/tweet-store
 //= require tweet.react
+//= require collections/tweets
 var Tweets = React.createClass({
+  collection: new TwitterApp.Collections.Tweets,
+
   getInitialState: function() {
     return {
-      recent: TweetStore.tweets()
+      recent: this.collection.models
     }
   },
   componentDidMount: function() {
-    $(TweetStore).on('change', function(e) {
+    this.collection.on('sync', function() {
       this.setState({
-        recent: TweetStore.tweets()
+        recent: this.collection.models
       })
     }.bind(this))
-    TweetStore.recent();
+    // this.collection.fetch();
   },
   render: function() {
     var tweets = [];
-    this.state.recent.forEach(function(tweet){
-      tweets.push(<Tweet tweet={tweet}/>)
+    this.state.recent.forEach(function(tweet, i){
+      tweets.push(<Tweet key={i} tweet={tweet}/>)
     })
     return (
       <section id="tweets-container">

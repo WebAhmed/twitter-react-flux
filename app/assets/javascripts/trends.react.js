@@ -1,26 +1,27 @@
 /** @jsx React.DOM */
 //= require hashtag.react
-//= require stores/hashtag-store
-//= require stores/tweet-store
+//= require collections/hashtags
 var Trends = React.createClass({displayName: 'Trends',
+  collection: new TwitterApp.Collections.Hashtags,
+
   getInitialState: function() {
     return {
-      hashtags: HashtagStore.hashtags()
+      hashtags: this.collection.models
     }
   },
-  componentWillMount: function() {
-    $(HashtagStore).on('change', function() {
+  componentDidMount: function() {
+    this.collection.on('sync', function() {
       this.setState({
-        hashtags: HashtagStore.hashtags()
+        hashtags: this.collection.models
       })
     }.bind(this))
-    HashtagStore.popular();
+    this.collection.fetch();
   },
 
   render: function() {
     var trends = [];
-    this.state.hashtags.forEach(function(tag) {
-      trends.push(Hashtag( {tag:tag} ))
+    this.state.hashtags.forEach(function(tag, i) {
+      trends.push(Hashtag( {key:i, tag:tag} ))
     })
     return (
       React.DOM.section( {id:"trends-container"}, 
