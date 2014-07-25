@@ -11,8 +11,8 @@ var Hashtag = React.createClass({
   handleClick: function(e) {
     e.preventDefault();
     search = new TwitterApp.Collections.TweetSearch({query: e.target.hash.replace("#", "")});
-    // search.fetch({success: function(data) {
-    //   TwitterApp.tweetCollection.reset(data);
-    // }});
+    search.fetch({success: function(data) {
+      TwitterApp.tweetCollection.reset(data.models);
+    }});
   }
 })

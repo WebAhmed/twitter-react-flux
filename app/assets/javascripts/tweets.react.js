@@ -9,7 +9,7 @@ var Tweets = React.createClass({displayName: 'Tweets',
   },
   componentDidMount: function() {
 
-    TwitterApp.tweetCollection.on('sync', function() {
+    TwitterApp.tweetCollection.on('all', function() {
       this.setState({
         recent: TwitterApp.tweetCollection.models
       })

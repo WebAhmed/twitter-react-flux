@@ -35,6 +35,6 @@ var Trends = React.createClass({displayName: 'Trends',
 
   allTweets: function(e) {
     e.preventDefault();
-    TweetStore.recent();
+    TwitterApp.tweetCollection.fetch();
   }
 })
