@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require_self
+//= require ../../../vendor/assets/javascripts/react
 //= require ../../../vendor/assets/javascripts/underscore
 //= require ../../../vendor/assets/javascripts/backbone
 //= require app
